@@ -3,56 +3,72 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap" 
-    rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="src/style.css" />
     <title>Plus_Wk7: My Vanilla Weather App</title>
   </head>
 
   <body>
     <div class="weather-app">
-    <header>
-      <form>
-        <input type="search" placeholder="Enter a city.." required class="search-form-input"/>
-        <input type="submit" value="Search" class="search-form-button" />
-      </form>
-    </header>
+      <header>
+        <form class="search-form" id="search-form">
+          <input
+            type="search"
+            placeholder="Enter a city.."
+            required
+            class="search-form-input"
+            id="search-form-input"
+          />
+          <input 
+            type="submit" 
+            value="Search" 
+            class="search-form-button"
+            id="search-form-button" />
+        </form>
+      </header>
 
-    <main>
+      <main>
         <div class="weather-app-data">
-      <div>
-        <h1 class="weather-app-city">London</h1>
-        <p class="weather-app-details">
-          Tuesday 14:49, scattered clouds
-          <br />
-          Humidity: <strong>66%</strong>, Wind: <strong>3.13km/h</strong>
-        </p>
-      </div>
-      <div class="weather-app-temperature-container">
-        <div class="weather-app-icon"> ⛅ </div> 
-        <div class="weather-app-temperature">  12 </div>
-        <div class="weather-app-unit">  °C </div>
-    </div>
-      </div>
-    </main>
+          <div>
+            <h1 class="weather-app-city" id="city">London</h1>
+            <p class="weather-app-details">
+              Tuesday 14:49, scattered clouds
+              <br />
+              Humidity: <strong>66%</strong>, Wind: <strong>3.13km/h</strong>
+            </p>
+          </div>
+          <div class="weather-app-temperature-container">
+            <div class="weather-app-icon">⛅</div>
+            <div class="weather-app-temperature">12</div>
+            <div class="weather-app-unit">°C</div>
+          </div>
+        </div>
+      </main>
 
-    <footer>
-      This project was coded by
-      <a href="https://github.com/carolinehargreaves41-sketch" target="_blank">
-        Caroline Hargreaves</a
-      >, is
-      <a
-        href="https://github.com/carolinehargreaves41-sketch/Plus_Wk7_Vanilla-Weather-Search"
-        target="_blank"
-      >
-        open-sourced on GitHub</a
-      >, and
-      <a href="https://clever-cassata-f5d731.netlify.app/" target="_blank">
-        hosted on Netlify
-      </a>
-    </footer>
+      <footer>
+        This project was coded by
+        <a
+          href="https://github.com/carolinehargreaves41-sketch"
+          target="_blank"
+        >
+          Caroline Hargreaves</a
+        >, is
+        <a
+          href="https://github.com/carolinehargreaves41-sketch/Plus_Wk7_Vanilla-Weather-Search"
+          target="_blank"
+        >
+          open-sourced on GitHub</a
+        >, and
+        <a href="https://clever-cassata-f5d731.netlify.app/" target="_blank">
+          hosted on Netlify
+        </a>
+      </footer>
     </div>
+    <script src="src/index.js"></script>
   </body>
 </html>
