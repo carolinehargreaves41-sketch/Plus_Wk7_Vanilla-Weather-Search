@@ -33,6 +33,11 @@ main {
   padding: 30px;
 }
 
+.search-form {
+  display: flex;
+  gap: 5px;
+}
+
 .search-form-input {
   background-color: #f9f7fe;
   border: none;
@@ -47,9 +52,24 @@ main {
   border: none;
   border-radius: 6px;
   color: #ffff;
+  cursor: pointer;
   font-size: 16px;
-  margin-left: 5px;
   padding: 15px 30px;
+  transition: background-color 0.3s ease;
+}
+
+.search-form-button:hover {
+  background-color: #7a4ed4;
+}
+
+.error-message {
+  background-color: #ffebee;
+  border-left: 4px solid #f65282;
+  border-radius: 6px;
+  color: #b71c1c;
+  display: none;
+  margin-bottom: 15px;
+  padding: 12px 15px;
 }
 
 .weather-app-data {
@@ -75,6 +95,7 @@ main {
 }
 
 .weather-app-temperature-container {
+  align-items: flex-start;
   display: flex;
 }
 

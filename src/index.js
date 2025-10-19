@@ -1,4 +1,38 @@
+// This function validates the city input
+function validateCity(city) {
+  // Trim whitespace and convert to lowercase
+  city = city.trim().toLowerCase();
+  // Check if city length is more than 1 character
+  if (city.length <= 1) {
+    showError("Please enter a city name with at least 2 characters.");
+    return null;
+  }
+  return city;
+}
+
+// This function displays error messages to the user
+function showError(message) {
+  let errorElement = document.querySelector("#error-message");
+  errorElement.innerHTML = message;
+  errorElement.style.display = "block";
+}
+
+// This function hides error messages
+function hideError() {
+  let errorElement = document.querySelector("#error-message");
+  errorElement.style.display = "none";
+}
+
+//This function fetches the weather data for a specific city from the API
+function getWeatherCity(city) {
+  let apiKey = "o9f9ab326ef453b45bfe0f44453a6b2t";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(refreshWeather).catch(handleError);
+}
+
+//This function updates the page HTML with the fetched weather
 function refreshWeather(response) {
+  hideError();
   let temperatureElement = document.querySelector("#temperature");
   let temperature = response.data.temperature.current;
   let cityElement = document.querySelector("#city");
@@ -18,6 +52,33 @@ function refreshWeather(response) {
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
 }
 
+// This function handles API errors when a city is not found or invalid
+function handleError(error) {
+  if (error.response || error.response.status === 404) {
+    showError("City not found. Please check the spelling and try again.");
+  } else {
+    showError("Unable to fetch weather data. Please try again.");
+  }
+}
+
+//This function handles the form submission
+function handleSearchSubmit(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-form-input");
+  let validatedCity = validateCity(searchInput.value);
+
+  //Only proceed if validation passes
+  if (validatedCity) {
+    getWeatherCity(validatedCity);
+    searchInput.value = "";
+  }
+}
+
+//Add event listener for the search form
+let searchFormElement = document.querySelector("#search-form");
+searchFormElement.addEventListener("submit", handleSearchSubmit);
+
+//This function formats the current date and time
 function formatDate(date) {
   let minutes = date.getMinutes();
   let hours = date.getHours();
@@ -38,21 +99,5 @@ function formatDate(date) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function searchCity(city) {
-  let apiKey = "o9f9ab326ef453b45bfe0f44453a6b2t";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(refreshWeather);
-}
-
-function handleSearchSubmit(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#search-form-input");
-  let cityElement = document.querySelector("#city");
-  cityElement.innerHTML = searchInput.value;
-  searchCity(searchInput.value);
-}
-
-let searchFormElement = document.querySelector("#search-form");
-searchFormElement.addEventListener("submit", handleSearchSubmit);
-
-searchCity("London");
+//Load the weather for a default city on page load
+getWeatherCity("London");

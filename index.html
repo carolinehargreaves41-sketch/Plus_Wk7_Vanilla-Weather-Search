@@ -17,13 +17,16 @@
   <body>
     <div class="weather-app">
       <header>
+        <div class="error-message" id="error-message"></div>
         <form class="search-form" id="search-form">
           <input
-            type="search"
+            type="text"
             placeholder="Enter a city.."
             required
             class="search-form-input"
             id="search-form-input"
+            autofocus="on"
+            autocomplete="off"
           />
           <input
             type="submit"
