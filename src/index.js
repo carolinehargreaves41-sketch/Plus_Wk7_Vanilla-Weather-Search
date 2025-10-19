@@ -1,8 +1,6 @@
 // This function validates the city input
 function validateCity(city) {
-  // Trim whitespace and convert to lowercase
   city = city.trim().toLowerCase();
-  // Check if city length is more than 1 character
   if (city.length <= 1) {
     showError("Please enter a city name with at least 2 characters.");
     return null;
@@ -52,7 +50,7 @@ function refreshWeather(response) {
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
 }
 
-// This function handles API errors when a city is not found or invalid
+// This function handles API errors
 function handleError(error) {
   if (error.response || error.response.status === 404) {
     showError("City not found. Please check the spelling and try again.");
@@ -67,7 +65,6 @@ function handleSearchSubmit(event) {
   let searchInput = document.querySelector("#search-form-input");
   let validatedCity = validateCity(searchInput.value);
 
-  //Only proceed if validation passes
   if (validatedCity) {
     getWeatherCity(validatedCity);
     searchInput.value = "";
@@ -101,3 +98,17 @@ function formatDate(date) {
 
 //Load the weather for a default city on page load
 getWeatherCity("London");
+
+//This function adds the Dark Theme
+function changeTheme() {
+  let body = document.querySelector("body");
+
+  if (body.classList.contains("dark")) {
+    body.classList.remove("dark");
+  } else {
+    body.classList.add("dark");
+  }
+}
+
+let themeButton = document.querySelector(".dark-theme-button");
+themeButton.addEventListener("click", changeTheme);
